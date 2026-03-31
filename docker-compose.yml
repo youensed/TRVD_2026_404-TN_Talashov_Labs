@@ -1,0 +1,125 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pmc_crm}
+      POSTGRES_USER: ${POSTGRES_USER:-pmc_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pmc_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pmc_user} -d ${POSTGRES_DB:-pmc_crm}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://pmc_user:pmc_password@postgres:5432/pmc_crm}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      APP_SECRET_KEY: ${APP_SECRET_KEY:-change-me-with-a-long-random-secret}
+      APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY:-change-me-with-a-valid-fernet-key}
+      APP_CORS_ORIGINS: ${APP_CORS_ORIGINS:-http://localhost:5173,http://frontend:5173}
+      APP_ENVIRONMENT: ${APP_ENVIRONMENT:-development}
+      APP_SECURE_COOKIES: ${APP_SECURE_COOKIES:-false}
+      APP_SEED_DEMO_DATA: ${APP_SEED_DEMO_DATA:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head &&
+      python -m app.seed &&
+      uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+
+  celery-worker:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://pmc_user:pmc_password@postgres:5432/pmc_crm}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      APP_SECRET_KEY: ${APP_SECRET_KEY:-change-me-with-a-long-random-secret}
+      APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY:-change-me-with-a-valid-fernet-key}
+      APP_CORS_ORIGINS: ${APP_CORS_ORIGINS:-http://localhost:5173,http://frontend:5173}
+      APP_ENVIRONMENT: ${APP_ENVIRONMENT:-development}
+      APP_SECURE_COOKIES: ${APP_SECURE_COOKIES:-false}
+      APP_SEED_DEMO_DATA: ${APP_SEED_DEMO_DATA:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A app.core.celery_app.celery_app worker --loglevel=info
+    volumes:
+      - ./backend:/app
+
+  celery-beat:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://pmc_user:pmc_password@postgres:5432/pmc_crm}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      APP_SECRET_KEY: ${APP_SECRET_KEY:-change-me-with-a-long-random-secret}
+      APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY:-change-me-with-a-valid-fernet-key}
+      APP_CORS_ORIGINS: ${APP_CORS_ORIGINS:-http://localhost:5173,http://frontend:5173}
+      APP_ENVIRONMENT: ${APP_ENVIRONMENT:-development}
+      APP_SECURE_COOKIES: ${APP_SECURE_COOKIES:-false}
+      APP_SEED_DEMO_DATA: ${APP_SEED_DEMO_DATA:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A app.core.celery_app.celery_app beat --loglevel=info
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      VITE_API_URL: http://localhost:8000
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
+  redis_data:
+

@@ -1,0 +1,50 @@
+INFO:     Started server process [10372]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+{"timestamp": "2026-03-28T16:02:15.497949+00:00", "level": "INFO", "logger": "app.main", "message": "GET /health/live 200 8.86ms", "request_id": "f9a14761-e92c-4fc7-ac6d-50fbe237111d"}
+{"timestamp": "2026-03-28T16:02:25.976838+00:00", "level": "INFO", "logger": "app.main", "message": "GET /auth/me 200 32.50ms", "request_id": "b48884dd-8258-4484-96d6-e666cdd4a224"}
+{"timestamp": "2026-03-28T16:02:26.026339+00:00", "level": "INFO", "logger": "app.main", "message": "GET /users/patients 200 13.97ms", "request_id": "5b26cd13-3cfc-452b-9ddf-efd39dc834f8"}
+{"timestamp": "2026-03-28T16:02:26.045450+00:00", "level": "INFO", "logger": "app.main", "message": "GET /schedules/shifts 200 13.70ms", "request_id": "31f7b35a-d96e-49c9-b4e1-a2151f92535b"}
+<sys>:0: SAWarning: TypeDecorator EncryptedShortString(length=512) will not produce a cache key because the ``cache_ok`` attribute is not set to True.  This can have significant performance implications including some performance degradations in comparison to prior SQLAlchemy versions.  Set this attribute to True if this type object's state is safe to use in a cache key, or False to disable this warning. (Background on this warning at: https://sqlalche.me/e/20/cprf)
+{"timestamp": "2026-03-28T16:02:26.070236+00:00", "level": "INFO", "logger": "app.main", "message": "GET /doctors 200 19.92ms", "request_id": "6a6175a9-806e-4b73-91c9-072d1a2b4bef"}
+{"timestamp": "2026-03-28T16:02:26.094860+00:00", "level": "INFO", "logger": "app.main", "message": "GET /appointments 200 19.98ms", "request_id": "d69cb520-c071-45f8-bb40-26ded5a595fc"}
+{"timestamp": "2026-03-28T16:02:26.110509+00:00", "level": "INFO", "logger": "app.main", "message": "GET /payments 200 11.93ms", "request_id": "5bfee96a-b210-4371-9bbd-381c13ba8261"}
+{"timestamp": "2026-03-28T16:02:42.429287+00:00", "level": "INFO", "logger": "app.main", "message": "OPTIONS /users/patients 200 0.21ms", "request_id": "9c2a920f-2dc4-4ceb-bab5-788445c60da1"}
+{"timestamp": "2026-03-28T16:02:42.485710+00:00", "level": "INFO", "logger": "app.main", "message": "POST /users/patients 201 40.76ms", "request_id": "f28097f2-3cc4-4c22-8965-115d3fa74648"}
+{"timestamp": "2026-03-28T16:02:42.501596+00:00", "level": "INFO", "logger": "app.main", "message": "GET /users/patients 200 9.62ms", "request_id": "f31efc5e-e551-4f91-bb76-19905983dad7"}
+{"timestamp": "2026-03-28T16:04:08.605271+00:00", "level": "INFO", "logger": "app.main", "message": "OPTIONS /schedules/shifts 200 1.57ms", "request_id": "9e68a88b-92c4-4486-998d-792bb960fac0"}
+{"timestamp": "2026-03-28T16:04:09.851131+00:00", "level": "INFO", "logger": "app.main", "message": "POST /schedules/shifts 201 892.73ms", "request_id": "8f8c3c75-d86a-4f9d-bd0c-b8dc16f41564"}
+{"timestamp": "2026-03-28T16:04:09.966267+00:00", "level": "INFO", "logger": "app.main", "message": "GET /schedules/shifts 200 80.05ms", "request_id": "0fe1f555-ccef-4114-b969-3c31dbe4da95"}
+{"timestamp": "2026-03-28T16:04:24.996819+00:00", "level": "INFO", "logger": "app.main", "message": "OPTIONS /payments 200 0.24ms", "request_id": "edc868c7-274e-4b00-934d-62ac9a1d2bf1"}
+{"timestamp": "2026-03-28T16:04:25.058679+00:00", "level": "INFO", "logger": "app.main", "message": "POST /payments 201 48.87ms", "request_id": "536ad79b-ae3d-40c6-9b5e-488f894566d5"}
+{"timestamp": "2026-03-28T16:04:25.071484+00:00", "level": "INFO", "logger": "app.main", "message": "GET /payments 200 7.05ms", "request_id": "c79cb04d-5b79-4e92-8478-9ca794a7bd98"}
+{"timestamp": "2026-03-28T16:04:25.082461+00:00", "level": "INFO", "logger": "app.main", "message": "GET /appointments 200 7.93ms", "request_id": "bcfdc915-c8ea-4915-a1a1-c9fef775c1ff"}
+{"timestamp": "2026-03-28T16:04:32.427776+00:00", "level": "INFO", "logger": "app.main", "message": "POST /auth/logout 200 28.04ms", "request_id": "db1e8561-25a9-4d83-bd2c-313ae69cd09c"}
+{"timestamp": "2026-03-28T16:04:49.293794+00:00", "level": "INFO", "logger": "app.main", "message": "POST /auth/login 200 127.58ms", "request_id": "b6636ff9-fcb8-467d-b3dc-e8e796eca051"}
+{"timestamp": "2026-03-28T16:04:49.346293+00:00", "level": "INFO", "logger": "app.main", "message": "GET /users/patients 200 8.80ms", "request_id": "c9c1ebbb-2446-4ff1-bfb1-7a039cd21e53"}
+{"timestamp": "2026-03-28T16:04:49.361081+00:00", "level": "INFO", "logger": "app.main", "message": "GET /doctors 200 12.06ms", "request_id": "c3d377b2-f947-429f-8e8c-5d122ddaf155"}
+{"timestamp": "2026-03-28T16:04:49.375485+00:00", "level": "INFO", "logger": "app.main", "message": "GET /schedules/shifts 200 10.08ms", "request_id": "c5a88ac8-ffa5-47a4-9c50-d450aa18fb15"}
+{"timestamp": "2026-03-28T16:04:49.398571+00:00", "level": "INFO", "logger": "app.main", "message": "GET /appointments 200 19.36ms", "request_id": "04ec96e8-d426-48dd-8377-7a466b845887"}
+{"timestamp": "2026-03-28T16:04:49.413684+00:00", "level": "INFO", "logger": "app.main", "message": "GET /payments 200 10.70ms", "request_id": "d7ef3530-3275-451a-b5e2-9adc28ec22a6"}
+{"timestamp": "2026-03-28T16:04:49.426181+00:00", "level": "INFO", "logger": "app.main", "message": "GET /auth/me 200 8.37ms", "request_id": "69f1169b-fe5c-4177-a341-9187f5ab214c"}
+{"timestamp": "2026-03-28T16:04:49.459516+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/revenue 200 17.42ms", "request_id": "ff34b428-bbef-4177-816c-c386d8290a06"}
+{"timestamp": "2026-03-28T16:04:49.481003+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/doctor-load 200 34.23ms", "request_id": "feb4e278-8b0e-4918-8343-63103403a179"}
+{"timestamp": "2026-03-28T16:05:38.076967+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/revenue 401 7.59ms", "request_id": "ad97777c-7c02-4630-91bf-0dc2e3750609"}
+{"timestamp": "2026-03-28T16:06:57.958940+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/revenue 200 12.95ms", "request_id": "1f67e13e-832e-481a-ae68-541b732d8233"}
+{"timestamp": "2026-03-28T16:06:57.967800+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/doctor-load 200 19.60ms", "request_id": "485a54f3-d9f3-4f98-bb81-35a29a7c08d0"}
+{"timestamp": "2026-03-28T16:07:05.949717+00:00", "level": "INFO", "logger": "app.main", "message": "GET /auth/me 200 83.26ms", "request_id": "1520f460-b5e4-497c-8702-24bd1ddf389e"}
+{"timestamp": "2026-03-28T16:07:06.261180+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/revenue 200 188.23ms", "request_id": "5628941f-c843-4f5c-8e1a-ad20da9f53f4"}
+{"timestamp": "2026-03-28T16:07:06.483022+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/doctor-load 200 173.27ms", "request_id": "b156905c-19d4-43a9-843a-5e6da0dfb2a9"}
+{"timestamp": "2026-03-28T16:07:18.060202+00:00", "level": "INFO", "logger": "app.main", "message": "POST /auth/logout 200 24.39ms", "request_id": "d28e6772-7625-4ce7-9fa3-6b5bfffbb732"}
+{"timestamp": "2026-03-28T16:07:29.216580+00:00", "level": "INFO", "logger": "app.main", "message": "POST /auth/login 200 125.15ms", "request_id": "84293a65-b00a-4a6b-a418-cbc44da07048"}
+{"timestamp": "2026-03-28T16:07:29.260056+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/revenue 200 9.99ms", "request_id": "e8834fb1-2b87-47b6-9282-e8bbaa45dea7"}
+{"timestamp": "2026-03-28T16:07:29.284666+00:00", "level": "INFO", "logger": "app.main", "message": "GET /reports/doctor-load 200 21.00ms", "request_id": "edfeb1b0-602a-4a09-acdf-529ec235b3a6"}
+{"timestamp": "2026-03-28T16:07:29.297062+00:00", "level": "INFO", "logger": "app.main", "message": "GET /auth/me 200 7.45ms", "request_id": "7ac09f01-6ba7-475c-9cf8-efb31c031498"}
+{"timestamp": "2026-03-28T16:07:29.327639+00:00", "level": "INFO", "logger": "app.main", "message": "GET /users/patients 200 8.48ms", "request_id": "f87cdfbb-f79e-4c58-bafa-d4c2992f7ec5"}
+{"timestamp": "2026-03-28T16:07:29.348775+00:00", "level": "INFO", "logger": "app.main", "message": "GET /doctors 200 16.68ms", "request_id": "b50d92b4-5233-4a8e-afdd-88e5ec37f403"}
+{"timestamp": "2026-03-28T16:07:29.371053+00:00", "level": "INFO", "logger": "app.main", "message": "GET /schedules/shifts 200 18.47ms", "request_id": "c82c36a0-9b49-428d-ab78-30fbfdde7d11"}
+{"timestamp": "2026-03-28T16:07:29.376971+00:00", "level": "INFO", "logger": "app.main", "message": "GET /appointments 200 22.08ms", "request_id": "53bacb65-6b83-4627-a11c-3d8f4538b1ea"}
+{"timestamp": "2026-03-28T16:07:29.401756+00:00", "level": "INFO", "logger": "app.main", "message": "GET /payments 200 22.61ms", "request_id": "46cba6b5-bfdc-400c-9207-08d9591eb169"}
+{"timestamp": "2026-03-28T16:07:56.331091+00:00", "level": "INFO", "logger": "app.main", "message": "POST /schedules/shifts 201 32.65ms", "request_id": "827194fb-82ab-4b3d-adec-bca1054f687a"}
+{"timestamp": "2026-03-28T16:07:56.345497+00:00", "level": "INFO", "logger": "app.main", "message": "GET /schedules/shifts 200 8.86ms", "request_id": "abd8818a-e9a5-467a-a921-f2c2d12ca507"}
